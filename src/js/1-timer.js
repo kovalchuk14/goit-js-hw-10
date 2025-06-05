@@ -29,6 +29,7 @@ const options = {
 };
 
 let button = document.querySelector("button")
+button.classList.add("disable");
 
 function buttonOff() {
     button.removeEventListener("click", makeTimer);
