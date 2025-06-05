@@ -6,35 +6,43 @@ import "izitoast/dist/css/iziToast.min.css";
 
 let form = document.querySelector(".form");
 
-form.addEventListener("sumbit", makePromise);
+form.addEventListener("submit", submitForm);
 
-function makePromise(event) {
-    console.log(1);
+function makePromise({ state, delay }) {
+
+    return new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+            if (state == "fulfilled") {
+                resolve(delay);
+            }
+            if (state == "rejeted") {
+                reject(delay);
+            }
+        }, delay);
+    });
+}
+
+function submitForm(event) {
     event.preventDefault();
     const delay = document.querySelector('input[name="delay"]');
     const selectedRadio = document.querySelector('input[name="state"]:checked');
     const stateValue = selectedRadio ? selectedRadio.value : null;
     if (stateValue == null) return;
 
-    let promise = new Promice((resolve, reject) => {
-        setTimeout(() => {
-            if (stateValue == "fulfilled") {
-                resolve(delay);
-            }
-            if (stateValue == "rejeted") {
-                reject(delay);
-            }
-        }, delay);
-    });
-    promise
+
+
+    makePromise({ stateValue, delay })
         .then(value => {
+            console.log(1);
             iziToast.show({
-                message: `✅ Fulfilled promise in ${delay}ms`
+                message: `✅ Fulfilled promise in ${value}ms`
             });
         })
-        .catch(value => {
+        .catch(error => {
+
             iziToast.show({
-                message: `❌ Rejected promise in ${delay}ms`
+                message: `❌ Rejected promise in ${error}ms`
             });
         });
 }
