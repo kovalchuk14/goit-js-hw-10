@@ -16,7 +16,7 @@ function makePromise({ state, delay }) {
             if (state == "fulfilled") {
                 resolve(delay);
             }
-            if (state == "rejeted") {
+            if (state == "rejected") {
                 reject(delay);
             }
         }, delay);
@@ -32,7 +32,7 @@ function submitForm(event) {
 
 
 
-    makePromise({ stateValue, delay })
+    makePromise({ state: stateValue, delay: Number(delay.value) })
         .then(value => {
             console.log(1);
             iziToast.show({

@@ -28,7 +28,7 @@ const options = {
     },
 };
 
-let button = document.querySelector("#main-button")
+let button = document.querySelector("button")
 
 function buttonOff() {
     button.removeEventListener("click", makeTimer);
