@@ -24,27 +24,17 @@ const options = {
             buttonOff();
             return;
         }
-        buttonOn();
+        button.disabled = false;
     },
 };
 
 let button = document.querySelector("button")
-button.classList.add("disable");
-
-function buttonOff() {
-    button.removeEventListener("click", makeTimer);
-    button.classList.add("disable");
-    button.classList.remove("able");
-}
-
-function buttonOn() {
-    button.addEventListener("click", makeTimer);
-    button.classList.add("able");
-    button.classList.remove("disable");
-}
+document.querySelector('#datetime-picker').disabled = false;
+button.disabled = true;
+button.addEventListener("click", makeTimer);
 
 function makeTimer() {
-    buttonOff();
+    button.disabled = true;
     document.querySelector('#datetime-picker').disabled = true;
     timerInterval = setInterval(showTime, 1000);
 }
@@ -85,8 +75,6 @@ function showTime() {
     minutesEl.textContent = addLeadingZero(timer.minutes);
     secondsEl.textContent = addLeadingZero(timer.seconds);
 
-
-    console.log(userSelectedDate.getTime() - Date.now());
 }
 
 function addLeadingZero(value) {

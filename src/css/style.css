@@ -19,11 +19,6 @@
     font-size: 12px;
 }
 
-.disable {
-    background-color: gainsboro;
-    color: gray;
-    border: 1px solid gray;
-}
 
 .form {
     width: 250px;
