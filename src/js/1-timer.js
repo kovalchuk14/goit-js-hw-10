@@ -21,7 +21,6 @@ const options = {
             iziToast.show({
                 message: "Please choose a date in the future"
             });
-            buttonOff();
             return;
         }
         button.disabled = false;
@@ -32,6 +31,8 @@ let button = document.querySelector("button")
 document.querySelector('#datetime-picker').disabled = false;
 button.disabled = true;
 button.addEventListener("click", makeTimer);
+
+
 
 function makeTimer() {
     button.disabled = true;
